@@ -21,12 +21,11 @@ import {
   deleteFrnd,
   getUser,
 } from "../api/api";
-import ChatSkeleton from "../Others/ChatSkeleton";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import socket from "../socket";
-
 import useSocketManager from "../socketManager";
+import SearchAnimation from "../lottie/SearchAnimation";
 
 export default function Friends() {
   const token = localStorage.getItem("token");
@@ -329,7 +328,7 @@ export default function Friends() {
                   handleSearch={handleSearch}
                 />
                 {searching ? (
-                  <ChatSkeleton required={5} />
+                  <SearchAnimation />
                 ) : (
                   searchResults.length > 0 &&
                   searchResults.map((u) => {
@@ -345,7 +344,7 @@ export default function Friends() {
                     );
                   })
                 )}
-                {searchResults.length == 0 && (
+                {!searching && searchResults.length == 0 && (
                   <Box height="100%" fontSize="small" color="#718096">
                     No records found!!
                   </Box>

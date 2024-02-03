@@ -29,7 +29,7 @@ import {
   Code,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { formatStatus } from "../../logics/timeLogic";
+import { createdAtFormat } from "../../logics/timeLogic";
 
 import { DotsVerticalIcon, Pencil2Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
@@ -262,7 +262,7 @@ function GroupBox1({ group }) {
       <Box display="flex" flexDir="column" fontSize="small">
         <Text>{`Name : ${group.name}`}</Text>
         <Text>{`Admin : ${group.admin.name}`}</Text>
-        <Text>{`Created at : ${formatStatus(group.createdAt)}`}</Text>
+        <Text>{`Created at : ${createdAtFormat(group.createdAt)}`}</Text>
       </Box>
     </Box>
   );

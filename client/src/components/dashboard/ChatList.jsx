@@ -46,7 +46,12 @@ export default function ChatList({ loading, handleChatClick }) {
             />
           </InputGroup>
           <Menu>
-            <MenuButton as={DotsVerticalIcon} cursor="pointer" />
+            <MenuButton
+              as={DotsVerticalIcon}
+              cursor="pointer"
+              width={22}
+              height={30}
+            />
             <MenuList>
               <MenuItem onClick={onOpen}>Create group</MenuItem>
             </MenuList>

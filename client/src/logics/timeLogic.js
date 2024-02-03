@@ -37,7 +37,12 @@ export function formatDateLabel(date) {
     } else if (date === yesterday.toLocaleDateString()) {
         return "Yesterday";
     } else {
-        return date;
+        const formattedDate = new Date(date).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        });
+        return formattedDate;
     }
 }
 
@@ -56,8 +61,39 @@ export function formatStatus(dateString) {
         const ampm = hours >= 12 ? 'pm' : 'am';
         const formattedTime = `${hours % 12 || 12}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
 
-        return isToday ? `Today at ${formattedTime}` : `Yesterday at ${formattedTime}`;
+        return isToday ? `Last seen today at ${formattedTime}` : `Last seen yesterday at ${formattedTime}`;
     } else {
-        return inputDate.toLocaleDateString();
+        const formattedDate = new Date(dateString).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        });
+        return `last seen at ${formattedDate}`;
+    }
+}
+
+export function createdAtFormat(dateString) {
+    const inputDate = new Date(dateString);
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const isToday = inputDate.toDateString() === today.toDateString();
+    const isYesterday = inputDate.toDateString() === yesterday.toDateString();
+
+    if (isToday || isYesterday) {
+        const hours = inputDate.getHours();
+        const minutes = inputDate.getMinutes();
+        const ampm = hours >= 12 ? 'pm' : 'am';
+        const formattedTime = `${hours % 12 || 12}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+
+        return isToday ? `today at ${formattedTime}` : `yesterday at ${formattedTime}`;
+    } else {
+        const formattedDate = new Date(dateString).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        });
+        return `${formattedDate}`;
     }
 }

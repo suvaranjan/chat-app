@@ -146,7 +146,7 @@ function SingleChatHeader({
   return (
     <>
       <Box onClick={() => handleLeaveChat()}>
-        <ArrowBackIcon />
+        <ArrowBackIcon boxSize={5} />
       </Box>
       <Box display="flex" gap={2} alignItems="center">
         <Avatar
@@ -169,7 +169,7 @@ function SingleChatHeader({
         </Box>
       </Box>
       <Box>
-        <DotsVerticalIcon />
+        <DotsVerticalIcon width={18} height={18} />
       </Box>
     </>
   );
@@ -197,7 +197,7 @@ function GroupChatHeader({
   return (
     <>
       <Box onClick={() => handleLeaveChat()}>
-        <ArrowBackIcon />
+        <ArrowBackIcon boxSize={5} />
       </Box>
       <Box display="flex" gap={2} alignItems="center">
         <Avatar
@@ -220,7 +220,12 @@ function GroupChatHeader({
       </Box>
       <Box>
         <Menu>
-          <MenuButton as={DotsVerticalIcon} cursor="pointer" />
+          <MenuButton
+            as={DotsVerticalIcon}
+            cursor="pointer"
+            height={18}
+            width={18}
+          />
           <MenuList>
             <MenuItem onClick={handleExit}>Exit group</MenuItem>
           </MenuList>
