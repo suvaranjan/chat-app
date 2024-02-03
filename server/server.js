@@ -156,16 +156,12 @@ io.on("connection", (socket) => {
     });
 });
 
-// connect().then(() => {
-//     try {
-//         server.listen(port, () => {
-//             console.log(`Server connected to http://localhost:${port}`);
-//         });
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// });
-
 connect().then(() => {
-    console.log("Server connected!");
+    try {
+        server.listen(port, () => {
+            console.log(`Server connected to http://localhost:${port}`);
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
 });
