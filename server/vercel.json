@@ -1,0 +1,21 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "*.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
+    ],
+    "env": {
+        "MONGO_STRING":"mongodb+srv//suvaranjan:suvacluster@cluster0.ltfrycb.mongodb.net/Chat-App?retryWrites=true&w=majority",
+        "PORT":"3000",
+        "SECRET_KEY":"Gagu@1234"
+    }
+  }
+  
