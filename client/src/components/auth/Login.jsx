@@ -18,7 +18,10 @@ const Login = () => {
 
   const handleLogin = async (values, formik) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/login", values);
+      const res = await axios.post(
+        "https://chat-app-busd.onrender.com/api/login",
+        values
+      );
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
     } catch (error) {

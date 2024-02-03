@@ -20,7 +20,7 @@ const Register = () => {
   const handleRegister = async (values) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/register",
+        "https://chat-app-busd.onrender.com/api/register",
         values
       );
       toast({

@@ -18,7 +18,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://chat-app-xi-pearl.vercel.app/",
         methods: ["GET", "POST"],
     },
 });
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
     res.status(200).json({ message: "hello world" });
