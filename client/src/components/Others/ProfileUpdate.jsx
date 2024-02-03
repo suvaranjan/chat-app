@@ -168,6 +168,7 @@ export default function ProfileUpdate({
                 size="lg"
                 src={updatedAvatar}
                 onClick={handleAvatarChange}
+                name={updatedName}
               />
               <Input
                 type="file"
