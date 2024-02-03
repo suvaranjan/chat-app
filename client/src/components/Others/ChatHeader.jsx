@@ -10,6 +10,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  useColorMode,
 } from "@chakra-ui/react";
 import useStore from "../../zustand";
 import { formatStatus } from "../../logics/timeLogic";
@@ -136,6 +137,7 @@ function SingleChatHeader({
   userStatus,
   typingUserNames,
 }) {
+  const { colorMode } = useColorMode();
   const status = userStatus
     ? userStatus
     : formatStatus(selectedChat.friend.status.lastSeen);
@@ -154,7 +156,11 @@ function SingleChatHeader({
         <Box display="flex" flexDirection="column">
           <Text fontWeight="500">{selectedChat.friend.name}</Text>
           {typingNames && typingNames === selectedChat.friend.name ? (
-            <Text fontSize="small" color="blue.500" fontWeight="500">
+            <Text
+              fontSize="small"
+              color={colorMode === "dark" ? "blue.300" : "blue.500"}
+              fontWeight="500"
+            >
               Typing..
             </Text>
           ) : (
@@ -185,6 +191,7 @@ function GroupChatHeader({
   handleLeaveChat,
   typingUserNames,
 }) {
+  const { colorMode } = useColorMode();
   const typingNames =
     typingUserNames.length !== 0 ? typingUserNames.join(", ") : null;
   return (
@@ -200,7 +207,10 @@ function GroupChatHeader({
         <Box display="flex" flexDirection="column">
           <Text fontWeight="500">{selectedChat.group.name}</Text>
           {typingNames ? (
-            <Text fontSize="small">{`${typingNames} Typing..`}</Text>
+            <Text
+              fontSize="small"
+              color={colorMode === "dark" ? "blue.300" : "blue.500"}
+            >{`${typingNames} Typing..`}</Text>
           ) : (
             <Text fontSize="small" cursor="pointer" onClick={onGroupInfoOpen}>
               Click here for group info
