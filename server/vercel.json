@@ -11,10 +11,6 @@
         "src": "/(.*)",
         "dest": "/"
       }
-    ],
-    "env": {
-        "MONGO_STRING":"mongodb+srv//suvaranjan:suvacluster@cluster0.ltfrycb.mongodb.net/Chat-App?retryWrites=true&w=majority",
-        "SECRET_KEY":"Gagu@1234"
-    }
+    ]
   }
   
