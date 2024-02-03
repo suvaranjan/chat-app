@@ -309,7 +309,7 @@ function GroupBox2({
               <SearchIcon color="gray.300" />
             </InputLeftElement>
             <Input
-              type="tel"
+              type="text"
               placeholder="Search friends"
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
