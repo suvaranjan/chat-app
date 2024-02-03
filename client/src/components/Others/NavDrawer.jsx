@@ -77,6 +77,7 @@ export default function NavDrawer({ isOpen, onOpen, onClose }) {
               navigate("/login");
               setLoginUser(null);
               setSelectedChat(null);
+              onClose();
             }}
           >
             Logout
