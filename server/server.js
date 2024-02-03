@@ -12,8 +12,6 @@ const userRoutes = require("./routes/userRoutes")
 const chatRoutes = require("./routes/chatRoutes")
 const UserStatus = require("./models/UserStatus");
 
-
-
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
