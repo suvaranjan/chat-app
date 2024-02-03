@@ -15,7 +15,7 @@ const defaultOptions = {
 export default function LoadingMsg() {
   return (
     <Box height="100%">
-      <Lottie options={defaultOptions} width={200} />
+      <Lottie options={defaultOptions} width={300} />
     </Box>
   );
 }

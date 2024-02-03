@@ -9,6 +9,7 @@ import {
   Text,
   Link,
   useToast,
+  useColorMode,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -16,6 +17,7 @@ import axios from "axios";
 const Register = () => {
   const navigate = useNavigate();
   const toast = useToast();
+  const { colorMode } = useColorMode();
 
   const handleRegister = async (values) => {
     try {
@@ -76,14 +78,15 @@ const Register = () => {
   });
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minH="90vh"
-      // border="2px solid red"
-    >
-      <Box maxW="sm" p="5" borderRadius="md" boxShadow="md" borderWidth="1px">
+    <Box display="flex" justifyContent="center" alignItems="center" minH="90vh">
+      <Box
+        maxW="sm"
+        p="5"
+        borderRadius="md"
+        boxShadow="md"
+        borderWidth="1px"
+        bg={colorMode === "dark" ? "#2D3748" : "#FAFAFA"}
+      >
         <Text fontSize="1.2rem" mb={3} fontWeight="600" textAlign="center">
           Register
         </Text>
