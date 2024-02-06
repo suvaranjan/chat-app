@@ -45,23 +45,6 @@ export const isChatMsgsFetched = (chatList, chatId) => {
     return findChat.chat.messages !== undefined;
 };
 
-// export const isSameSender = (messages, m, i, loginUserId) => {
-//     return (
-//         i < messages.length - 1 &&
-//         (messages[i + 1].sender._id !== m.sender._id ||
-//             messages[i + 1].sender._id === undefined) &&
-//         messages[i].sender._id !== loginUserId
-//     );
-// };
-
-// export const isLastMessage = (messages, i, loginUserId) => {
-//     return (
-//         i === messages.length - 1 &&
-//         messages[messages.length - 1].sender._id !== loginUserId &&
-//         messages[messages.length - 1].sender._id
-//     );
-// };
-
 
 export const isSameSender = (groupedMessages, currentDate, m, i, loginUserId) => {
     const currentMessages = groupedMessages[currentDate];
@@ -93,14 +76,11 @@ export const checkUnseenMessages = (messages, loginUserId) => {
     return unseenMsgIds;
 }
 
-export const truncateMessage = (message, wordLimit) => {
-    const words = message.split(' ');
-
-    if (words.length > wordLimit) {
-        const truncatedMessage = words.slice(0, wordLimit).join(' ');
+export const truncateMessage = (message, charLimit) => {
+    if (message.length > charLimit) {
+        const truncatedMessage = message.slice(0, charLimit);
         return `${truncatedMessage} ...`;
     }
 
     return message;
 };
-

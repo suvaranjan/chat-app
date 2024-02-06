@@ -59,7 +59,7 @@ export default function ChatItem({ chat, handleChatClick }) {
         <Box display="flex" flexDirection="column" justifyContent="center">
           <Box fontWeight="500">{chatName}</Box>
           {latestMessage && (
-            <Box fontSize="small">{truncateMessage(latestMessage, 5)}</Box>
+            <Box fontSize="small">{truncateMessage(latestMessage, 20)}</Box>
           )}
         </Box>
       </Box>

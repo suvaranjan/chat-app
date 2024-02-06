@@ -33,10 +33,13 @@ export default function MessagesComp({ messages, chatType, sayHello }) {
 
 function SingleChatMessages({ messages, loginUser }) {
   const groupedMessages = groupMessagesByDate(messages);
-  const [showMore, setShowMore] = useState(false);
+  const [showMoreMap, setShowMoreMap] = useState({});
 
-  const handleShowMore = () => {
-    setShowMore(!showMore);
+  const handleShowMore = (messageId) => {
+    setShowMoreMap((prevMap) => ({
+      ...prevMap,
+      [messageId]: !prevMap[messageId],
+    }));
   };
 
   return (
@@ -52,12 +55,13 @@ function SingleChatMessages({ messages, loginUser }) {
               loginUser._id
             );
 
-            const contentToShow = showMore
+            const contentToShow = showMoreMap[m._id]
               ? m.content
               : truncateMessage(m.content, 30);
 
             return (
               <Box
+                key={i}
                 alignSelf={
                   m.sender._id === loginUser._id ? "flex-end" : "flex-start"
                 }
@@ -69,24 +73,23 @@ function SingleChatMessages({ messages, loginUser }) {
                 bg={bgColor}
                 color={textColor}
                 borderRadius="md"
-                key={i}
                 fontSize="sm"
                 mb={2}
                 maxWidth="70%"
               >
-                <Box>
+                <Box wordBreak="break-word">
                   <Text display="inline">{contentToShow} </Text>
                   {m.content.length > 30 && (
                     <Button
                       size="xs"
                       cursor="pointer"
-                      onClick={handleShowMore}
+                      onClick={() => handleShowMore(m._id)}
                       ml={1}
                       colorScheme={bgColor}
                       color={textColor}
                       fontWeight="500"
                     >
-                      {showMore ? "read less" : "read more"}
+                      {showMoreMap[m._id] ? "read less" : "read more"}
                     </Button>
                   )}
                 </Box>
@@ -104,10 +107,13 @@ function SingleChatMessages({ messages, loginUser }) {
 
 function GroupChatMessages({ messages, loginUser }) {
   const groupedMessages = groupMessagesByDate(messages);
-  const [showMore, setShowMore] = useState(false);
+  const [showMoreMap, setShowMoreMap] = useState({});
 
-  const handleShowMore = () => {
-    setShowMore(!showMore);
+  const handleShowMore = (messageId) => {
+    setShowMoreMap((prevMap) => ({
+      ...prevMap,
+      [messageId]: !prevMap[messageId],
+    }));
   };
 
   return (
@@ -122,18 +128,18 @@ function GroupChatMessages({ messages, loginUser }) {
               m.sender._id,
               loginUser._id
             );
-            const contentToShow = showMore
+            const contentToShow = showMoreMap[m._id]
               ? m.content
               : truncateMessage(m.content, 30);
 
             return (
               <Box
+                key={i}
                 alignSelf={
                   m.sender._id === loginUser._id ? "flex-end" : "flex-start"
                 }
                 display="flex"
                 alignItems="center"
-                key={i}
                 gap={1}
                 mb={
                   isSameSender(groupedMessages, date, m, i, loginUser._id) ||
@@ -183,19 +189,19 @@ function GroupChatMessages({ messages, loginUser }) {
                     </Text>
                   )}
                   <Box display="flex">
-                    <Box>
-                      <Text display="inline">{contentToShow} </Text>
+                    <Box wordBreak="break-word">
+                      <Text display="inline">{contentToShow}</Text>
                       {m.content.length > 30 && (
                         <Button
                           size="xs"
                           cursor="pointer"
-                          onClick={handleShowMore}
+                          onClick={() => handleShowMore(m._id)}
                           ml={1}
                           colorScheme={bgColor}
                           color={textColor}
                           fontWeight="500"
                         >
-                          {showMore ? "read less" : "read more"}
+                          {showMoreMap[m._id] ? "read less" : "read more"}
                         </Button>
                       )}
                     </Box>
