@@ -67,7 +67,7 @@ export default function ChatList({ loading, handleChatClick }) {
           </Box>
         ) : (
           <Box>
-            <ChatSkeleton required={8} />
+            <ChatSkeleton required={15} />
           </Box>
         )}
         {!loading && chatList.length === 0 && <FriendsAnimation />}
